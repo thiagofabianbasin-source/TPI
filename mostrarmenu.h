@@ -1,0 +1,6 @@
+#ifndef MOSTRARMENU_H_INCLUDED
+#define MOSTRARMENU_H_INCLUDED
+
+ void mostrarMenu();
+
+#endif // MOSTRARMENU_H_INCLUDED

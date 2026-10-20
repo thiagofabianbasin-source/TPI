@@ -1,0 +1,54 @@
+# depslib dependency file v1.0
+1792537714 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\main.cpp
+	<iostream>
+	"rlutil.h"
+	"mostrarmenu.h"
+	"Reglasdeljuego.h"
+	"jugadores.h"
+	"mostrarestadisticas.h"
+
+1792537384 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarmenu.cpp
+	<iostream>
+
+1792535397 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\reglasdeljuego.cpp
+	<iostream>
+
+1792536340 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugar.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+
+1782761621 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1792532249 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarmenu.h
+
+1792533769 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\reglasdeljuego.h
+
+1792533621 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugar.h
+
+1792533769 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarestadisticas.h
+
+1792538080 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\estadisticas.cpp
+	<iostream>
+
+1792537703 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugadores.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+
+1792537703 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugadores.h
+
