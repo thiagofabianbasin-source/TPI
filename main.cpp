@@ -4,47 +4,28 @@
 #include "Reglasdeljuego.h"
 #include "jugadores.h"
 #include "mostrarestadisticas.h"
+#include "opcionesMenu.h"
 using namespace std;
 int main() {
-    srand(time(NULL));
 
-    int opcion;
+    cout << "========================================\n";
+    cout << "        CRISIS DE LOS 40\n";
+    cout << "========================================\n";
+    cout << "\n";
+    cout << "        Presione ENTER\n";
+    cout << "\n";
+    cout << "========================================\n";
 
-    do {
-        mostrarMenu();
-
-        cout << "\nIngrese una opcion: ";
-        cin >> opcion;
-
-        switch(opcion) {
-        case 1:
-             rlutil::cls();
-            jugar();
-            break;
-
-        case 2:
-            rlutil::cls();
-            Estadisticas();
-            break;
-
-        case 3:
-              rlutil::cls();
-            reglasdelJuego();
-            break;
-
-        case 0:
-             rlutil::cls();
-            cout << "\nPrograma finalizado.\n";
-            break;
-
-        default:
-            cout << "\nOpcion invalida.\n";
-        }
+    ;
 
      rlutil :: anykey();
      rlutil :: cls();
 
+    opcionesDelMenu();
 
+
+    return 0;
+}
 
     } while(opcion != 0);
 
