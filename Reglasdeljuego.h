@@ -1,6 +1,0 @@
-#ifndef REGLASDELJUEGO_H_INCLUDED
-#define REGLASDELJUEGO_H_INCLUDED
-
-void reglasdelJuego();
-
-#endif // REGLASDELJUEGO_H_INCLUDED
