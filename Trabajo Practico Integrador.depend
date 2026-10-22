@@ -1,0 +1,92 @@
+# depslib dependency file v1.0
+1792639331 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\main.cpp
+	<iostream>
+	"rlutil.h"
+	"mostrarmenu.h"
+	"Reglasdeljuego.h"
+	"jugadores.h"
+	"mostrarestadisticas.h"
+	"opcionesMenu.h"
+	"elegirCarta.h"
+	"mazoPoker.h"
+	"mostrarEspaciorestante.h"
+	"tablero.h"
+
+1792537384 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarmenu.cpp
+	<iostream>
+
+1792535397 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\reglasdeljuego.cpp
+	<iostream>
+
+1792536340 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugar.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+
+1782761621 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1792532249 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarmenu.h
+
+1792533769 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\reglasdeljuego.h
+
+1792533621 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugar.h
+
+1792533769 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarestadisticas.h
+
+1792622657 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\estadisticas.cpp
+	<iostream>
+
+1792671578 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugadores.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+	<ctime>
+	"tablero.h"
+
+1792537703 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\jugadores.h
+
+1792618050 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\opcionesmenu.cpp
+	<iostream>
+	"rlutil.h"
+	"mostrarmenu.h"
+	"Reglasdeljuego.h"
+	"jugadores.h"
+	"mostrarestadisticas.h"
+
+1792618050 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\opcionesmenu.h
+
+1792636414 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarespaciorestante.cpp
+	<iostream>
+
+1792677783 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\tablero.cpp
+	<iostream>
+	"jugadores.h"
+	"tablero.h"
+	"mazoPoker.h"
+
+1792638349 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\elegircarta.h
+
+1792677783 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mazopoker.h
+
+1792636418 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mostrarespaciorestante.h
+
+1792672106 c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\tablero.h
+	<string>
+
+1792677860 source:c:\users\thiag\onedrive\desktop\trabajo practico integrador\trabajo practico integrador\mazopoker.cpp
+	<iostream>
+	<cstdlib>
+
