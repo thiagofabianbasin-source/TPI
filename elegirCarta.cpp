@@ -19,8 +19,6 @@ int elegirCarta() {
     cin >> opcion;
 
     while (opcion != 1 && opcion != 2) {
-        cin.clear();
-        cin.ignore(1000, '\n');
         cout << "Opcion invalida. Carta a jugar (1 o 2): ";
         cin >> opcion;
     }
