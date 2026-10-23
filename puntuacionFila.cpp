@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+//CALCULA LA PUNTUACION DE CADA FILA
 void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador) {
 
     int suma = 0;
