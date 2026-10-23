@@ -215,6 +215,7 @@ if (cantidad == 5) {
     devolverCarta(sobrante);
 
     cout << endl;
+    rlutil::cls();
     cout << "Carta colocada correctamente." << endl;
     cout << "Cartas en el mazo: " << cartasRestantes() << endl;
 
