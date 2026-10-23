@@ -1,11 +1,18 @@
 #include <iostream>
+#include "rlutil.h"
 #include "jugadores.h"
 #include "tablero.h"
 #include "mazoPoker.h"
+
  using namespace std;
  //  muestra las cartas
-void mostrarTablero(int cartas[3][5]) {
-
+void mostrarTablero(int cartas[3][5], string nombres[2], int puntos[2]) {
+    cout << endl;
+    cout << "==================== CRISIS DE LOS 40 ====================" << endl;
+    cout << "Objetivo: 50 puntos || Cartas en el mazo: " << cartasRestantes() << endl;
+    cout << endl;
+    cout << "  " << nombres[0] << ": " << puntos[0] << " puntos" << endl;
+    cout << "  " << nombres[1] << ": " << puntos[1] << " puntos" << endl;
     cout << endl;
     cout << "          1      2      3      4      5"
          << "       Cartas   Suma" << endl;
@@ -46,8 +53,7 @@ float tablero(string nombres[2]) {
     int cartas[3][5] = {0};
 
     cout << "==================== CRISIS DE LOS 40 ====================" << endl;
-    cout << "Objetivo: 50 puntos || Cartas en el mazo: "
-         << cartasRestantes() << endl;
+    cout << "Objetivo: 50 puntos || Cartas en el mazo: "<< cartasRestantes() << endl;
     cout << endl;
 
     cout << "  " << nombres[0] << ": " << puntos[0] << " puntos" << endl;
@@ -169,12 +175,13 @@ if (cantidad == 5) {
     cout << endl;
     rlutil::cls();
     cout << "Carta colocada correctamente." << endl;
-    cout << "Cartas en el mazo: " << cartasRestantes() << endl;
+
 
     cout << endl;
     cout << "Tablero actualizado:" << endl;
 
-   mostrarTablero(cartas) ;
+   mostrarTablero(cartas, nombres, puntos) ;
 
     return 0;
 }
+
