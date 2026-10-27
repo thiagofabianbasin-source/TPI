@@ -3,7 +3,8 @@
 
 #include <string>
 using namespace std;
-    float tablero(string nombres[2]);
+    void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]);
+
     int valorCarta(int pos);
 
 #endif // TABLERO_H_INCLUDED
