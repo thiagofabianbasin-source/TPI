@@ -1,4 +1,9 @@
 #include <iostream>
+#include "rlutil.h"
+#include "jugadores.h"
+#include "tablero.h"
+#include "mazoPoker.h"
+#include "puntuacionFila.h"
 using namespace std;
 //CALCULA LA PUNTUACION DE CADA FILA
 void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador) {
