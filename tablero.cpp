@@ -3,54 +3,14 @@
 #include "jugadores.h"
 #include "tablero.h"
 #include "mazoPoker.h"
+#include "puntuacionFila.h"
+#include "turnos.h"
 
  using namespace std;
  //  muestra las cartas
-void mostrarTablero(int cartas[3][5], string nombres[2], int puntos[2]) {
-    cout << endl;
-    cout << "==================== CRISIS DE LOS 40 ====================" << endl;
-    cout << "Objetivo: 50 puntos || Cartas en el mazo: " << cartasRestantes() << endl;
-    cout << endl;
-    cout << "  " << nombres[0] << ": " << puntos[0] << " puntos" << endl;
-    cout << "  " << nombres[1] << ": " << puntos[1] << " puntos" << endl;
-    cout << endl;
-    cout << "          1      2      3      4      5"
-         << "       Cartas   Suma" << endl;
-
-    for (int fila = 0; fila < 3; fila++) {
-
-        int cantidad = 0;
-        int suma = 0;
-
-        cout << "Fila " << fila + 1 << ": ";
-
-        for (int columna = 0; columna < 5; columna++) {
-
-            if (cartas[fila][columna] == 0) {
-                cout << "[   ] ";
-            } else {
-                int pos = cartas[fila][columna] - 1;
-
-                mostrarCarta(pos);
-                cout << " ";
-
-                cantidad++;
-                suma += valorCarta(pos);
-            }
-        }
-
-        cout << "   " << cantidad << "/5";
-        cout << "      " << suma << endl;
-    }
-}
 
 // partida
-float tablero(string nombres[2]) {
-
-    mazoPoker();
-
-    int puntos[2] = {0, 0};
-    int cartas[3][5] = {0};
+void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
 
     cout << "==================== CRISIS DE LOS 40 ====================" << endl;
     cout << "Objetivo: 50 puntos || Cartas en el mazo: "<< cartasRestantes() << endl;
@@ -131,44 +91,63 @@ float tablero(string nombres[2]) {
              << endl;
         devolverCarta(carta1);
         devolverCarta(carta2);
-        return 0;
+        return ;
     }
 
-    if (paloCarta(elegida) == 'D') {
-        cout << "Las jugadas de diamantes se implementaran despues."
-             << endl;
-        devolverCarta(carta1);
-        devolverCarta(carta2);
-        return 0;
+   int fila, columna;
+
+bool esDiamante = (paloCarta(elegida) == 'D');
+
+do {
+    cout << "Fila (1-3): ";
+    cin >> fila;
+} while (fila < 1 || fila > 3);
+
+do {
+    cout << "Casillero (1-5): ";
+    cin >> columna;
+
+    if (columna < 1 || columna > 5) {
+        cout << "Casillero invalido." << endl;
+    } else if (!esDiamante &&
+               cartas[fila - 1][columna - 1] != 0) {
+        cout << "Ese casillero esta ocupado." << endl;
     }
 
-    int fila, columna;
+} while (columna < 1 || columna > 5 ||
+         (!esDiamante && cartas[fila - 1][columna - 1] != 0));
 
-    do {
-        cout << "Fila (1-3): ";
-        cin >> fila;
-    } while (fila < 1 || fila > 3);
+int filaActual = fila - 1;
+int columnaActual = columna - 1;
 
-    do {
-        cout << "Casillero (1-5): ";
-        cin >> columna;
-    } while (columna < 1 || columna > 5 ||
-             cartas[fila - 1][columna - 1] != 0);
+bool casilleroVacio = (cartas[filaActual][columnaActual] == 0);
 
-    cartas[fila - 1][columna - 1] = elegida + 1;
-    int filaActual = fila - 1;
-int cantidad = 0;
+if (!casilleroVacio) {
+    int cartaReemplazada =
+cartas[filaActual][columnaActual] - 1;
 
-for (int c = 0; c < 5; c++) {
-    if (cartas[filaActual][c] != 0) {
-        cantidad++;
-    }
+    devolverCarta(cartaReemplazada);
+
+    cout << "Carta reemplazada: ";
+    mostrarCarta(cartaReemplazada);
+    cout << endl;
 }
 
-if (cantidad == 5) {
-    puntuacionFila(cartas, filaActual, puntos, 0);
-}
+cartas[filaActual][columnaActual] = elegida + 1;
 
+// Solo comprobamos si se completo la fila cuando colocamos una carta en un casillero vacio.
+
+    int cantidad = 0;
+
+    for (int c = 0; c < 5; c++) {
+        if (cartas[filaActual][c] != 0) {
+            cantidad++;
+        }
+    }
+
+    if (cantidad == 5) {
+        puntuacionFila(cartas, filaActual, puntos, jugador);
+    }
     // La carta no elegida vuelve al mazo.
     devolverCarta(sobrante);
 
@@ -180,8 +159,9 @@ if (cantidad == 5) {
     cout << endl;
     cout << "Tablero actualizado:" << endl;
 
-   mostrarTablero(cartas, nombres, puntos) ;
+  // mostrarTablero(cartas, nombres, puntos) ;
 
-    return 0;
+   turno(jugador);
+
+    return ;
 }
-
