@@ -47,7 +47,13 @@ int robarUna() {
       return cantidadRestantes;
 
 }
+ int valorCarta(int pos){
+ return valores[pos];
+ }
       // aca termna el sistema de cartas robadas :)
+      char paloCarta(int pos){
+       return palos[pos];
+      }
 
 void mostrarCarta(int pos) {
     int v = valores[pos];
@@ -66,4 +72,10 @@ void mostrarCarta(int pos) {
     else              cout << v;
 
     cout << " " << palos[pos] << "]";
+}
+void devolverCarta(int pos) {
+ if (usadas[pos]){
+    usadas[pos] = false;
+    cantidadRestantes++;
+ }
 }
