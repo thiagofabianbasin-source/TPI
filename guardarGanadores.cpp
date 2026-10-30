@@ -16,7 +16,6 @@ void guardarGanador (string nombre, int puntaje)´{
 //esta funcion de abajo llamalo al final de una partida
 // como los turnos
 void registrarResultado(string nombre[2],int puntos[2]){
- cout<<"debug: "<< nombres[0]<< "=" << puntos[0]<<"/"<< nombres [1] << "=" <<puntos[1]<<endl;
  bool llego0=(puntos[0]>=50);
  bool llego1=(puntos[1]>=50);
  if (llego0 && llego1){
