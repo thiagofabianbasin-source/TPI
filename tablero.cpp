@@ -6,6 +6,7 @@
 #include "puntuacionFila.h"
 #include "turnos.h"
 #include "guardarGanadores.h"
+#include "comodin.h"
 
  using namespace std;
  //  muestra las cartas
@@ -38,7 +39,7 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
                 mostrarCarta(cartas[fila][columna] - 1);
                 cout << " ";
                 cantidad++;
-                // La suma se calcular  cuando implementemos las jugadas y el valor de cada carta.
+                // La suma se calcularÂ  cuando implementemos las jugadas y el valor de cada carta.
             }
         }
 
@@ -86,13 +87,31 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
         sobrante = carta1;
     }
 
-    // Por ahora, las cartas especiales no se pueden jugar.
+    // funcionalidad del comodin
     if (valorCarta(elegida) == 0) {
-        cout << "El comodin se implementara en el siguiente paso."
-             << endl;
-        devolverCarta(carta1);
-        devolverCarta(carta2);
-        return ;
+       if (tableroVacio(cartas)) {
+        cout<<"el comodin no se puede jugar con el tablero vacio."<<endl;
+
+        if (valorCarta(sobrante) == 0){
+        //las dos son comodines no se juega ni aca
+         cout<< "ambas cartas son comodines. Se pierde el turno." <<endl;
+         devolverCarta(carta1);
+         devolverCarta(carta2);
+         return;
+        }
+        //jugamos con la otra cartita
+        int aux = elegida;
+        elegida = sobrante;
+        sobrante = aux;
+       } else{
+        jugarComodin(cartas, puntos, jugador);
+        //el comodiny la carta no elegida vuelven al mazo
+        devolverCarta(elegida);
+        devolverCarta(sobrante);
+        rlutil::cls();
+        cout<<"comodin jugado correctamente."<<endl;
+        return;
+       }
     }
 
    int fila, columna;
