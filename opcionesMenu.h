@@ -1,6 +1,0 @@
-#ifndef OPCIONESMENU_H_INCLUDED
-#define OPCIONESMENU_H_INCLUDED
-
-      int opcionesDelMenu();
-
-#endif // OPCIONESMENU_H_INCLUDED
