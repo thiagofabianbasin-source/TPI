@@ -1,0 +1,6 @@
+#ifndef ELEGIRCARTA_H_INCLUDED
+#define ELEGIRCARTA_H_INCLUDED
+
+int elegirCarta();
+
+#endif // ELEGIRCARTA_H_INCLUDED
