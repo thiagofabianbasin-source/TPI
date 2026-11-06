@@ -46,12 +46,12 @@ void comodinPedirCasillero(const char* texto, int &fila, int &col) {
         cout << " Fila (1-3): ";
         cin >> fila;
     } while (fila < 1 || fila > 3);
-    cout<<" debug m1: origen " << f1+1<<","<<c1+1<<endl;
+    
     do {
         cout << " Casillero (1-5): ";
         cin >> col;
     } while (col < 1 || col > 5);
-    cout<<"debug m2: destino" <<f2+1<<","<<c2+1<<endl;
+    
     fila--;
     col--;
 }
@@ -63,7 +63,7 @@ void comodinIntercambiar(int cartas[3][5]) {
         comodinPedirCasillero("Primera carta a intercambiar:", f1, c1);
         if (cartas[f1][c1] == 0) cout << "debug m3: carta movida" << endl;
     } while (cartas[f1][c1] == 0);
-
+cout<<" debug m1: origen " << f1+1<<","<<c1+1<<endl;
     bool valida;
     do {
         comodinPedirCasillero("Segunda carta a intercambiar:", f2, c2);
@@ -76,6 +76,7 @@ void comodinIntercambiar(int cartas[3][5]) {
             valida = false;
         }
     } while (!valida);
+    cout<<"debug m2: destino" <<f2+1<<","<<c2+1<<endl;
 
     int aux = cartas[f1][c1];
     cartas[f1][c1] = cartas[f2][c2];
