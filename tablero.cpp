@@ -39,7 +39,8 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
                 mostrarCarta(cartas[fila][columna] - 1);
                 cout << " ";
                 cantidad++;
-                // La suma se calcular  cuando implementemos las jugadas y el valor de cada carta.
+                suma+= valorCarta(cartas[fila][columna]-1);
+                
             }
         }
 
