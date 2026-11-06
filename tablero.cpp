@@ -22,7 +22,7 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
     cout << "  " << nombres[1] << ": " << puntos[1] << " puntos" << endl;
     cout << endl;
 
-    cout << "          1      2      3      4      5"<< "       Cartas   Suma" << endl;
+    cout << "          1     2     3     4     5"<< "      Cartas   Suma" << endl;
 
     for (int fila = 0; fila < 3; fila++) {
 
