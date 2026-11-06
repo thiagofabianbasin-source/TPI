@@ -61,9 +61,8 @@ void comodinIntercambiar(int cartas[3][5]) {
 
     do {
         comodinPedirCasillero("Primera carta a intercambiar:", f1, c1);
-        if (cartas[f1][c1] == 0) cout << "debug m3: carta movida" << endl;
+        if (cartas[f1][c1] == 0) cout << "ese casillero esta vacio." << endl;
     } while (cartas[f1][c1] == 0);
-cout<<" debug m1: origen " << f1+1<<","<<c1+1<<endl;
     bool valida;
     do {
         comodinPedirCasillero("Segunda carta a intercambiar:", f2, c2);
@@ -76,7 +75,6 @@ cout<<" debug m1: origen " << f1+1<<","<<c1+1<<endl;
             valida = false;
         }
     } while (!valida);
-    cout<<"debug m2: destino" <<f2+1<<","<<c2+1<<endl;
 
     int aux = cartas[f1][c1];
     cartas[f1][c1] = cartas[f2][c2];
