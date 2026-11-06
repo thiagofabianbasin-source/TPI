@@ -135,7 +135,7 @@ void comodinRetirar(int cartas[3][5]) {
     cartas[f][c] = 0;
 }
 
-void jugarComodin(int cartas[3][5], int puntos[2], int jugador) {
+bool jugarComodin(int cartas[3][5], int puntos[2], int jugador) {
     bool puedeIntercambiar = (comodinContarCartas(cartas) >= 2);
     bool puedeMov = comodinPuedeMover(cartas);
     int opcion;
@@ -163,7 +163,11 @@ void jugarComodin(int cartas[3][5], int puntos[2], int jugador) {
         }
     } while (!valida);
 
-    if (opcion == 1){ comodinIntercambiar(cartas)};
-    else if (opcion == 2){ comodinMover(cartas, puntos, jugador)};
-    else {comodinRetirar(cartas)};
+    if (opcion == 1){
+        comodinIntercambiar(cartas);
+     }
+    else if (opcion == 2){
+        comodinMover(cartas, puntos, jugador);
+    }
+    else {comodinRetirar(cartas);}
 }
