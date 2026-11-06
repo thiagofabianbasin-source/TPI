@@ -22,7 +22,7 @@ bool tableroVacio(int cartas[3][5]) {
     return comodinContarCartas(cartas) == 0;
 }
 
-// hay algún casillero vacío en una fila distinta de "fila"?
+// hay algÃºn casillero vacÃ­o en una fila distinta de "fila"?
 bool comodinHayVacioEnOtraFila(int cartas[3][5], int fila) {
     for (int f = 0; f < 3; f++) {
         if (f == fila) continue;
@@ -46,10 +46,12 @@ void comodinPedirCasillero(const char* texto, int &fila, int &col) {
         cout << " Fila (1-3): ";
         cin >> fila;
     } while (fila < 1 || fila > 3);
+    cout<<" debug m1: origen " << f1+1<<","<<c1+1<<endl;
     do {
         cout << " Casillero (1-5): ";
         cin >> col;
     } while (col < 1 || col > 5);
+    cout<<"debug m2: destino" <<f2+1<<","<<c2+1<<endl;
     fila--;
     col--;
 }
@@ -59,7 +61,7 @@ void comodinIntercambiar(int cartas[3][5]) {
 
     do {
         comodinPedirCasillero("Primera carta a intercambiar:", f1, c1);
-        if (cartas[f1][c1] == 0) cout << "Ese casillero esta vacio." << endl;
+        if (cartas[f1][c1] == 0) cout << "debug m3: carta movida" << endl;
     } while (cartas[f1][c1] == 0);
 
     bool valida;
@@ -111,7 +113,7 @@ void comodinMover(int cartas[3][5], int puntos[2], int jugador) {
     cartas[f2][c2] = cartas[f1][c1];
     cartas[f1][c1] = 0;
 
-    // Si se formó la quinta carta de la nueva fila, puntúa quien jugó el comodín
+    // Si se formÃ³ la quinta carta de la nueva fila, puntÃºa quien jugÃ³ el comodÃ­n
     if (comodinCartasEnFila(cartas, f2) == 5) {
         puntuacionFila(cartas, f2, puntos, jugador);
     }
