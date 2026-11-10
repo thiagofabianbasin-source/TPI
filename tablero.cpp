@@ -104,14 +104,11 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
         int aux = elegida;
         elegida = sobrante;
         sobrante = aux;
-       } else{
-        cout<<"debug 2: antes de jugarcomodin"<<endl;
+       } else{        
         jugarComodin(cartas, puntos, jugador);
-        cout<<"debug 3: despues de jugarcomodin"<< endl;
         //el comodiny la carta no elegida vuelven al mazo
         devolverCarta(elegida);
         devolverCarta(sobrante);
-        cout<<"debug 4: cartas devueltas"<<endl;
         rlutil::cls();
         cout<<"comodin jugado correctamente."<<endl;
         return;
