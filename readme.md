@@ -1,4 +1,4 @@
-probar, buscar errores, buscar y modificar variable global
+probar, buscar errores, buscar y modificar variable global, hacer que se ordenen de mayor a menor los ganadores de la sesion.
 
 
 opcional: al terminar una fila poner un msj de que "x" jugador completo "Y" fila.
