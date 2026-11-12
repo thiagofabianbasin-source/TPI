@@ -1,62 +1,43 @@
 #include <iostream>
-#include <cstdlib>
 using namespace std;
+#include <cstdlib>
 
-int cantidadRestantes = 54;
-  //valores declrados fuera de "mazoPOker" xq sino las otras variables no accedian
-  int valores[54] = {
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, // Picas
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, // Corazones
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, // Treboles
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, // Diamantes
-    0, 0 // Comodines
-};
-
-char palos[54] = {
-    'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-    'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'C',
-    'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T',
-    'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D',
-    'J', 'J'
-};
-         //bool para que no se repitan las cartas robads
-bool usadas[54] = {false};
-         //reinicio del mazo
-void mazoPoker() {
-    cantidadRestantes = 54;
-
+void mazoPoker(bool usadas[54]) {
     for (int i = 0; i < 54; i++) {
         usadas[i] = false;
     }
-
 }
-      //sigue el robo de cartas :(
-int robarUna() {
-    int pos = rand() % 54;
 
+int robarUna(bool usadas[54]) {
+    int pos = rand() % 54;
     while (usadas[pos]) {
         pos = rand() % 54;
     }
-
     usadas[pos] = true;
-    cantidadRestantes--;
-
     return pos;
 }
-    int cartasRestantes () {
-      return cantidadRestantes;
 
+int cartasRestantes(bool usadas[54]) {
+    int cantidad = 0;
+    for (int i = 0; i < 54; i++) {
+        if (!usadas[i]) cantidad++;
+    }
+    return cantidad;
 }
- int valorCarta(int pos){
- return valores[pos];
- }
-      // aca termna el sistema de cartas robadas :)
-      char paloCarta(int pos){
-       return palos[pos];
-      }
+
+int valorCarta(int pos) {
+    if (pos >= 52) return 0;      // comodines
+    return pos % 13 + 1;
+}
+
+char paloCarta(int pos) {
+    if (pos >= 52) return 'J';
+    char palos[4] = {'P', 'C', 'T', 'D'};
+    return palos[pos / 13];
+}
 
 void mostrarCarta(int pos) {
-    int v = valores[pos];
+    int v = valorCarta(pos);
 
     if (v == 0) {
         cout << "[COMODIN]";
@@ -64,18 +45,15 @@ void mostrarCarta(int pos) {
     }
 
     cout << "[";
-
     if (v == 1)       cout << "A";
     else if (v == 11) cout << "J";
     else if (v == 12) cout << "Q";
     else if (v == 13) cout << "K";
     else              cout << v;
+    cout << " " << paloCarta(pos) << "]";
+}
 
-    cout << " " << palos[pos] << "]";
-}
-void devolverCarta(int pos) {
- if (usadas[pos]){
+void devolverCarta(bool usadas[54], int pos) {
     usadas[pos] = false;
-    cantidadRestantes++;
- }
 }
+
