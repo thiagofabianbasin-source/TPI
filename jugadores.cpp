@@ -1,14 +1,14 @@
+#include "rlutil.h"
 #include <iostream>
+using namespace std;
 #include <string>
 #include <cstdlib>
 #include <ctime>
 #include "tablero.h"
-#include "rlutil.h"
 #include "turnos.h"
-using namespace std;
 
-float jugar() ;
-float jugar() {
+float jugar(string ganadores[], int puntajes[], int &cantidadGanadores) ;
+float jugar(string ganadores[], int puntajes[], int &cantidadGanadores) {
     string nombre[2];
 
     int jugador;
@@ -32,7 +32,8 @@ float jugar() {
 
         rlutil :: anykey();
         rlutil::cls();
-    turnos(nombre, jugador);
+    turnos(nombre, jugador, ganadores, puntajes, cantidadGanadores);
 
     return 0;
 }
+
