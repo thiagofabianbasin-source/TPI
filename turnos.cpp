@@ -1,32 +1,32 @@
+#include "rlutil.h"
 #include <iostream>
+using namespace std;
 #include <string>
 #include "turnos.h"
 #include "tablero.h"
 #include "mazoPoker.h"
-#include "rlutil.h"
 #include "guardarGanadores.h"
 
-using namespace std;
 
 void turno(int &jugador) {
     jugador = 1 - jugador;
 }
 
-void turnos(string nombres[2], int jugador) {
-
-    mazoPoker();
+void turnos(string nombres[2], int jugador, string ganadores[], int puntajes[], int &cantidadGanadores) {
+    bool usadas[54];
+    mazoPoker(usadas);
 
     int puntos[2] = {0, 0};
     int cartas[3][5] = {0};
 
-    while (puntos[0] < 50 &&puntos[1] < 50 && cartasRestantes() >= 2) {
+    while (puntos[0] < 50 &&puntos[1] < 50 && cartasRestantes(usadas) >= 2) {
 
         cout << endl;
         cout << "Turno de " << nombres[jugador] << endl;
 
-        tablero(nombres, jugador, cartas, puntos);
+        tablero(nombres, jugador, cartas, puntos, usadas);
 
-        if (puntos[0] < 50 && puntos[1] < 50 &&cartasRestantes() >= 2) {
+        if (puntos[0] < 50 && puntos[1] < 50 &&cartasRestantes(usadas) >= 2) {
             turno(jugador);
 
         }
@@ -45,5 +45,6 @@ void turnos(string nombres[2], int jugador) {
     } else if (puntos[1] >= 50) {
         cout << "Gano " << nombres[1] << "!" << endl;
     }
-    registrarResultado(nombres, puntos);
+    registrarResultado(nombres, puntos, ganadores, puntajes, cantidadGanadores);
 }
+
