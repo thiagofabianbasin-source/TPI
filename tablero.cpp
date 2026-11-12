@@ -1,5 +1,6 @@
-#include <iostream>
 #include "rlutil.h"
+#include <iostream>
+ using namespace std;
 #include "jugadores.h"
 #include "tablero.h"
 #include "mazoPoker.h"
@@ -8,14 +9,13 @@
 #include "guardarGanadores.h"
 #include "comodin.h"
 
- using namespace std;
  //  muestra las cartas
 
 // partida
-void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
+void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bool usadas[54]){
 
     cout << "==================== CRISIS DE LOS 40 ====================" << endl;
-    cout << "Objetivo: 50 puntos || Cartas en el mazo: "<< cartasRestantes() << endl;
+    cout << "Objetivo: 50 puntos || Cartas en el mazo: "<< cartasRestantes(usadas) << endl;
     cout << endl;
 
     cout << "  " << nombres[0] << ": " << puntos[0] << " puntos" << endl;
@@ -40,7 +40,7 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
                 cout << " ";
                 cantidad++;
                 suma+= valorCarta(cartas[fila][columna]-1);
-                
+
             }
         }
 
@@ -53,8 +53,8 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
     cout << endl;
     cout << "Cartas robadas:" << endl;
 
-    int carta1 = robarUna();
-    int carta2 = robarUna();
+    int carta1 = robarUna(usadas);
+    int carta2 = robarUna(usadas);
 
     cout << "1) ";
     mostrarCarta(carta1);
@@ -96,19 +96,19 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2]){
         if (valorCarta(sobrante) == 0){
         //las dos son comodines no se juega ni aca
          cout<< "ambas cartas son comodines. Se pierde el turno." <<endl;
-         devolverCarta(carta1);
-         devolverCarta(carta2);
+         devolverCarta(usadas, carta1);
+         devolverCarta(usadas, carta2);
          return;
         }
         //jugamos con la otra cartita
         int aux = elegida;
         elegida = sobrante;
         sobrante = aux;
-       } else{        
-        jugarComodin(cartas, puntos, jugador);
+       } else{
+        jugarComodin(cartas, puntos, jugador, usadas);
         //el comodiny la carta no elegida vuelven al mazo
-        devolverCarta(elegida);
-        devolverCarta(sobrante);
+        devolverCarta(usadas, elegida);
+        devolverCarta(usadas, sobrante);
         rlutil::cls();
         cout<<"comodin jugado correctamente."<<endl;
         return;
@@ -147,7 +147,7 @@ if (!casilleroVacio) {
     int cartaReemplazada =
 cartas[filaActual][columnaActual] - 1;
 
-    devolverCarta(cartaReemplazada);
+    devolverCarta(usadas, cartaReemplazada);
 
     cout << "Carta reemplazada: ";
     mostrarCarta(cartaReemplazada);
@@ -167,25 +167,19 @@ cartas[filaActual][columnaActual] = elegida + 1;
     }
 
     if (cantidad == 5) {
-        puntuacionFila(cartas, filaActual, puntos, jugador);
+        puntuacionFila(cartas, filaActual, puntos, jugador,usadas);
+    cout << endl<<"presione una tecla para seguir..."<<endl;
+    rlutil::anykey();
     }
     // La carta no elegida vuelve al mazo.
-    devolverCarta(sobrante);
+    devolverCarta(usadas, sobrante);
 
-    cout << endl;
     rlutil::cls();
     cout << "Carta colocada correctamente." << endl;
 
 
     cout << endl;
     cout << "Tablero actualizado:" << endl;
-
-  // mostrarTablero(cartas, nombres, puntos) ;
-
-  if (puntos[jugador]>=50){
-    guardarGanador(nombres[jugador], puntos[jugador]);
-    return;
-  }
    turno(jugador);
 
     return ;
