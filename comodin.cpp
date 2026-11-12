@@ -1,8 +1,8 @@
 #include <iostream>
-#include "comodin.h"
-#include "mazopoker.h"
-#include "puntuacionFila.h"
 using namespace std;
+#include "comodin.h"
+#include "mazoPoker.h"
+#include "puntuacionFila.h"
 
 int comodinCartasEnFila(int cartas[3][5], int fila) {
     int n = 0;
@@ -46,12 +46,12 @@ void comodinPedirCasillero(const char* texto, int &fila, int &col) {
         cout << " Fila (1-3): ";
         cin >> fila;
     } while (fila < 1 || fila > 3);
-    
+
     do {
         cout << " Casillero (1-5): ";
         cin >> col;
     } while (col < 1 || col > 5);
-    
+
     fila--;
     col--;
 }
@@ -81,7 +81,7 @@ void comodinIntercambiar(int cartas[3][5]) {
     cartas[f2][c2] = aux;
 }
 
-void comodinMover(int cartas[3][5], int puntos[2], int jugador) {
+void comodinMover(int cartas[3][5], int puntos[2], int jugador, bool usadas[54]) {
     int f1, c1, f2, c2;
     bool valida;
 
@@ -114,11 +114,11 @@ void comodinMover(int cartas[3][5], int puntos[2], int jugador) {
 
     // Si se formó la quinta carta de la nueva fila, puntúa quien jugó el comodín
     if (comodinCartasEnFila(cartas, f2) == 5) {
-        puntuacionFila(cartas, f2, puntos, jugador);
+        puntuacionFila(cartas, f2, puntos, jugador, usadas);
     }
 }
 
-void comodinRetirar(int cartas[3][5]) {
+void comodinRetirar(int cartas[3][5], bool usadas[54]) {
     int f, c;
 
     do {
@@ -130,12 +130,12 @@ void comodinRetirar(int cartas[3][5]) {
     mostrarCarta(cartas[f][c] - 1);
     cout << endl;
 
-    devolverCarta(cartas[f][c] - 1);
+    devolverCarta(usadas, cartas[f][c] - 1);
     cartas[f][c] = 0;
 }
 
 
-void jugarComodin(int cartas[3][5], int puntos[2], int jugador) {
+void jugarComodin(int cartas[3][5], int puntos[2], int jugador, bool usadas[54]) {
     bool puedeIntercambiar = (comodinContarCartas(cartas) >= 2);
     bool puedeMov = comodinPuedeMover(cartas);
     int opcion;
@@ -167,7 +167,8 @@ void jugarComodin(int cartas[3][5], int puntos[2], int jugador) {
         comodinIntercambiar(cartas);
      }
     else if (opcion == 2){
-        comodinMover(cartas, puntos, jugador);
+        comodinMover(cartas, puntos, jugador,usadas );
     }
-    else {comodinRetirar(cartas);}
+    else {comodinRetirar(cartas,usadas);}
 }
+
