@@ -3,8 +3,9 @@
 #include <string>
 
 using namespace std;
-void guardarGanador(string nombre, int puntaje);
-void registrarResultado(std::string nombres[2], int puntos [2]);
-void mostrarGanadores();
+const int MAX_PARTIDAS = 100;
+void guardarGanador(string nombre, int puntaje, string ganadores[], int puntajes[], int &cantidad);
+void registrarResultado(string nombres[2], int puntos[2], string ganadores[], int puntajes[], int &cantidad);
+void mostrarHistorial(string ganadores[], int puntajes[], int cantidad);
 
 #endif // GUARDARGANADORES_H_INCLUDED
