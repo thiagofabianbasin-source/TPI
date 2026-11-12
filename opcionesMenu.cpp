@@ -1,15 +1,20 @@
-#include <iostream>
 #include "rlutil.h"
+#include <iostream>
+using namespace std;
 #include "mostrarmenu.h"
 #include "Reglasdeljuego.h"
 #include "jugadores.h"
 #include "mostrarestadisticas.h"
-using namespace std;
+#include <string>
+#include "guardarGanadores.h"
 int opcionesDelMenu() ;
 int opcionesDelMenu() {
     srand(time(NULL));
 
     int opcion;
+     string ganadores[MAX_PARTIDAS];
+    int puntajes[MAX_PARTIDAS];
+    int cantidadGanadores = 0;
 
     do {
         mostrarMenu();
@@ -20,12 +25,12 @@ int opcionesDelMenu() {
         switch(opcion) {
         case 1:
              rlutil::cls();
-            jugar();
+            jugar(ganadores, puntajes, cantidadGanadores);
             break;
 
         case 2:
             rlutil::cls();
-            Estadisticas();
+            Estadisticas(ganadores, puntajes, cantidadGanadores);
             break;
 
         case 3:
@@ -48,4 +53,5 @@ int opcionesDelMenu() {
 
 
     } while(opcion != 0);
+    return 0;
 }
