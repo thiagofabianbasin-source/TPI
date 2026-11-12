@@ -1,12 +1,12 @@
-#include <iostream>
 #include "rlutil.h"
+#include <iostream>
+using namespace std;
 #include "jugadores.h"
 #include "tablero.h"
 #include "mazoPoker.h"
 #include "puntuacionFila.h"
-using namespace std;
 //CALCULA LA PUNTUACION DE CADA FILA
-void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador) {
+void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador, bool usadas [54]) {
 
     int suma = 0;
 
@@ -50,7 +50,8 @@ void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador) {
 
     // Devolver las cinco cartas al mazo y vaciar la fila.
     for (int columna = 0; columna < 5; columna++) {
-        devolverCarta(cartas[fila][columna] - 1);
+        devolverCarta(usadas, cartas[fila][columna] - 1);
         cartas[fila][columna] = 0;
     }
 }
+
