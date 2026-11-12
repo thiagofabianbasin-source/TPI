@@ -1,11 +1,11 @@
 #include <iostream>
-#include "guardarGanadores.h"
  using namespace std;
- 
- void Estadisticas(){
+#include "guardarGanadores.h"
+
+ void Estadisticas(string ganadores[], int puntajes[], int cantidad){
   cout <<"==============="<<endl;
   cout <<"ESTADISTICAS"<<endl;
   cout <<"==============="<<endl;
   cout << endl;
-  mostrarGanadores();
- }
+mostrarHistorial(ganadores, puntajes, cantidad);
+}
