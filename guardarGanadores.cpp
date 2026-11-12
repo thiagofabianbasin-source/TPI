@@ -1,68 +1,56 @@
 #include <iostream>
-#include <string>
-#include "tablero.h"
 using namespace std;
-const int MAX_PARTIDAS = 100;
-string ganadores [ MAX_PARTIDAS];
-int puntajesGanadores [MAX_PARTIDAS];
-int cantidadGanadores=0;
+#include <string>
+#include "guardarGanadores.h"
 
-void guardarGanador (string nombre, int puntaje){
- if (cantidadGanadores < MAX_PARTIDAS){
-    ganadores[cantidadGanadores] = nombre;
-    puntajesGanadores[cantidadGanadores] = puntaje;
-    cantidadGanadores++;
- }
- }
+void guardarGanador(string nombre, int puntaje, string ganadores[], int puntajes[], int &cantidad) {
+    if (cantidad < MAX_PARTIDAS) {
+        ganadores[cantidad] = nombre;
+        puntajes[cantidad] = puntaje;
+        cantidad++;
+    }
+}
 
-
-//esta funcion de abajo llamalo al final de una partida
-// como los turnos
-void registrarResultado(string nombres[2], int puntos[2]) {
-
-    cout << "debug: " << nombres[0] << "=" << puntos[0]
-         << " / " << nombres[1] << "=" << puntos[1] << endl;
-
+void registrarResultado(string nombres[2], int puntos[2], string ganadores[], int puntajes[], int &cantidad) {
     bool llego0 = (puntos[0] >= 50);
     bool llego1 = (puntos[1] >= 50);
 
+    if (!llego0 && !llego1) return;
+
     if (llego0 && llego1) {
-
         if (puntos[0] > puntos[1]) {
-            guardarGanador(nombres[0], puntos[0]);
+            guardarGanador(nombres[0], puntos[0], ganadores, puntajes, cantidad);
+        } else if (puntos[1] > puntos[0]) {
+            guardarGanador(nombres[1], puntos[1], ganadores, puntajes, cantidad);
         }
-        else if (puntos[1] > puntos[0]) {
-            guardarGanador(nombres[1], puntos[1]);
-        }
-    }
-    else if (llego0) {
-        guardarGanador(nombres[0], puntos[0]);
-    }
-    else if (llego1) {
-        guardarGanador(nombres[1], puntos[1]);
+    } else if (llego0) {
+        guardarGanador(nombres[0], puntos[0], ganadores, puntajes, cantidad);
+    } else {
+        guardarGanador(nombres[1], puntos[1], ganadores, puntajes, cantidad);
     }
 }
-void mostrarGanadores(){
-if (cantidadGanadores==0){
-    cout<<"todavia no hay ganadores"<<endl;
-    return;
-}
-int mejor=0;
-for (int i=1; i <cantidadGanadores; i++){
-    if (puntajesGanadores[i]>puntajesGanadores[mejor]){
-        mejor=i;
+
+void mostrarHistorial(string ganadores[], int puntajes[], int cantidad) {
+    if (cantidad == 0) {
+        cout << "Todavia no hay partidas ganadas." << endl;
+        return;
     }
 
-}
-cout<<"Mejor puntaje: "<<endl;
-cout<<"================="<<endl;
-cout<<"nombre: "<< ganadores[mejor]<<endl;
-cout<<"puntaje: "<< puntajesGanadores[mejor]<<endl;
-cout<<endl;
+    int mejor = 0;
+    for (int i = 1; i < cantidad; i++) {
+        if (puntajes[i] > puntajes[mejor]) mejor = i;
+    }
 
-cout<<"Ganadores de esta sesion: "<<endl;
-cout<<"============================="<<endl;
-for (int i=0; i< cantidadGanadores;i++){
-cout<<i+1<<")"<<ganadores[i]<<" - " <<puntajesGanadores[i]<< "puntos"<<endl;
-}
+    cout << "Mejor puntaje:" << endl;
+    cout << "===============" << endl;
+    cout << "Nombre:  " << ganadores[mejor] << endl;
+    cout << "Puntaje: " << puntajes[mejor] << endl;
+    cout << endl;
+
+    cout << "Ganadores de esta sesion:" << endl;
+    cout << "===============" << endl;
+    for (int i = 0; i < cantidad; i++) {
+        cout << i + 1 << ") " << ganadores[i]
+             << " - " << puntajes[i] << " puntos" << endl;
+    }
 }
