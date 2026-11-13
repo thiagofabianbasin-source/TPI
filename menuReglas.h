@@ -1,0 +1,6 @@
+#ifndef MENUREGLAS_H_INCLUDED
+#define MENUREGLAS_H_INCLUDED
+
+  int menuReglas();
+
+#endif // MENUREGLAS_H_INCLUDED
