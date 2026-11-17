@@ -9,6 +9,14 @@ using namespace std;
 #include "comodin.h"
 #include "tableroGrafico.h"
 
+int primerCasilleroLibre(int cartas[3][5], int fila) {
+    for (int c = 0; c < 5; c++) {
+        if (cartas[fila][c] == 0) {
+            return c;
+        }
+    }
+    return -1;
+}
 // partida
 void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bool usadas[54]){
 
@@ -66,21 +74,21 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bo
         }
     }
 
-    bool esDiamante = (paloCarta(elegida) == 'D');
-    int fila;
+   
+   bool esDiamante = (paloCarta(elegida) == 'D');
+
+    int fila = pedirOpcion(x0, 25, "Fila (1-3): ", 1, 3);
     int columna;
-    bool valido;
 
-    do {
-        fila = pedirOpcion(x0, 25, "Fila (1-3): ", 1, 3);
+    if (esDiamante) {
+        // el diamante puede reemplazar: el jugador elige el casillero exacto
         columna = pedirOpcion(x0, 26, "Casillero (1-5): ", 1, 5);
+    } else {
+        // las demas cartas van al primer casillero libre de la fila
+        columna = primerCasilleroLibre(cartas, fila - 1) + 1;
+    }
 
-        valido = esDiamante || cartas[fila - 1][columna - 1] == 0;
 
-        if (!valido) {
-            mostrarMensaje(x0, 28, "Ese casillero esta ocupado. Elegi otro.");
-        }
-    } while (!valido);
 
     int filaActual = fila - 1;
     int columnaActual = columna - 1;
