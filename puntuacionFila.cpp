@@ -5,6 +5,7 @@ using namespace std;
 #include "tablero.h"
 #include "mazoPoker.h"
 #include "puntuacionFila.h"
+#include "tableroGrafico.h"
 //CALCULA LA PUNTUACION DE CADA FILA
 void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador, bool usadas [54]) {
 
@@ -16,13 +17,16 @@ void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador, bool 
     }
 
     int rival = 1 - jugador;
+    int x0 = calcularX0();   // los mensajes van alineados con el tablero
 
-    cout << endl;
-    cout << "Se completo la fila " << fila + 1 << "." << endl;
-    cout << "Suma de la fila: " << suma << endl;
+    rlutil::locate(x0, 19);
+    cout << "Se completo la fila " << fila + 1 << ".";
+    rlutil::locate(x0, 20);
+    cout << "Suma de la fila: " << suma;
 
     if (suma < 30) {
-        cout << "Nadie suma puntos." << endl;
+        rlutil::locate(x0, 21);
+        cout << "Nadie suma puntos.";
     }
     else if (suma == 30) {
         puntos[jugador] += 30;
@@ -32,20 +36,24 @@ void puntuacionFila(int cartas[3][5], int fila,int puntos[2], int jugador, bool 
                 puntos[rival] = 0;
         }
 
-        cout << "El jugador que completo la fila suma 30 puntos."
-             << endl;
-        cout << "El rival pierde 15 puntos, como minimo queda en 0."
-             << endl;
+        rlutil::locate(x0, 21);
+        cout << "El jugador que completo la fila suma 30 puntos.";
+        rlutil::locate(x0, 22);
+        cout << "El rival pierde 15 puntos, como minimo queda en 0.";
     }
     else if (suma < 40) {
         puntos[jugador] += suma;
+        rlutil::locate(x0, 21);
         cout << "El jugador que completo la fila suma "
-             << suma << " puntos." << endl;
+             << suma << " puntos.";
     }
     else {
         puntos[rival] += suma;
+        rlutil::locate(x0, 21);
+        rlutil::setColor(rlutil::LIGHTRED);
         cout << "CRISIS DE LOS 40: el rival suma "
-             << suma << " puntos." << endl;
+             << suma << " puntos.";
+        rlutil::setColor(rlutil::WHITE);
     }
 
     // Devolver las cinco cartas al mazo y vaciar la fila.
