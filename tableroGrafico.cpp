@@ -155,7 +155,14 @@ void dibujarFila(int fila, int x0, int cartas[3][5]) {
     cout << suma;
     colorNormal();
 }
+int calcularX0(){
+int columnas = rlutil::tcols();
+if (columnas<70){
+    columnas=120;
+}
+return columnas /2-33;
 
+}
 // dibuja toda la pantalla y devuelve la columna donde empieza el tablero
 int dibujarTablero(string nombres[2], int jugador, int cartas[3][5],
                    int puntos[2], int restantes, int carta1, int carta2) {
