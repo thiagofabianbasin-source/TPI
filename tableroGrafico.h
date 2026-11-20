@@ -9,5 +9,5 @@ void dibujarFila(int fila, int x0, int cartas[3][5]);
 void prepararZonaInferior(int x0);
 void mostrarMensaje(int x, int y, const char* texto);
 int pedirOpcion(int x, int y, const char* texto, int minimo, int maximo);
-
+ int calcularX0();
 #endif
