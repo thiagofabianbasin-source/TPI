@@ -9,6 +9,7 @@ using namespace std;
 #include "comodin.h"
 #include "tableroGrafico.h"
 
+// devuelve la primera columna libre (0 a 4) de una fila, o -1 si esta llena
 int primerCasilleroLibre(int cartas[3][5], int fila) {
     for (int c = 0; c < 5; c++) {
         if (cartas[fila][c] == 0) {
@@ -17,6 +18,7 @@ int primerCasilleroLibre(int cartas[3][5], int fila) {
     }
     return -1;
 }
+
 // partida
 void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bool usadas[54]){
 
@@ -67,15 +69,11 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bo
             // el comodin y la carta no elegida vuelven al mazo
             devolverCarta(usadas, elegida);
             devolverCarta(usadas, sobrante);
-
-            cout << endl << "Comodin jugado. Presione una tecla para seguir...";
-            rlutil::anykey();
             return;
         }
     }
 
-
-   bool esDiamante = (paloCarta(elegida) == 'D');
+    bool esDiamante = (paloCarta(elegida) == 'D');
 
     int fila = pedirOpcion(x0, 25, "Fila (1-3): ", 1, 3);
     int columna;
@@ -84,11 +82,11 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bo
         // el diamante puede reemplazar: el jugador elige el casillero exacto
         columna = pedirOpcion(x0, 26, "Casillero (1-5): ", 1, 5);
     } else {
-        // las demas cartas van al primer casillero libre de la fila
+        // las demas cartas van al primer casillero libre de la fila.
+        // Siempre hay uno: una fila completa se vacia al puntuar,
+        // asi que nunca queda con 5 cartas al terminar un turno.
         columna = primerCasilleroLibre(cartas, fila - 1) + 1;
     }
-
-
 
     int filaActual = fila - 1;
     int columnaActual = columna - 1;
@@ -119,10 +117,15 @@ void tablero(string nombres[2], int jugador, int cartas[3][5], int puntos[2], bo
 
             puntuacionFila(cartas, filaActual, puntos, jugador, usadas);
 
-            cout << endl << "Presione una tecla para seguir...";
+            rlutil::locate(x0, 24);
+            cout << "Presione una tecla para seguir...";
             rlutil::anykey();
         }
     }
+
+    // la carta no elegida vuelve al mazo
+    devolverCarta(usadas, sobrante);
+}
 
     // la carta no elegida vuelve al mazo
     devolverCarta(usadas, sobrante);
